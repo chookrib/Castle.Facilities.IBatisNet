@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="TestNullableObject"
+        xmlns="http://ibatis.apache.org/mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <alias>
+        <typeAlias alias="TestNullableObject" type="Tests.TestNullableObject, Tests" />
+    </alias>
+
+    <resultMaps>
+        <resultMap id="TestNullableObjectResult" class="TestNullableObject">
+            <result property="Id" column="To_Id" />
+            <result property="StringValue" column="To_StringValue" />
+            <result property="IntValue" column="To_IntValue" />
+            <result property="LongValue" column="To_LongValue" />
+            <result property="DecimalValue" column="To_DecimalValue" />
+            <result property="BoolValue" column="To_BoolValue" />
+            <result property="DateTimeValue" column="To_DateTimeValue" />
+            <result property="EnumValue" column="To_EnumValue" />
+        </resultMap>
+    </resultMaps>
+
+    <statements>
+
+        <insert id="Insert" parameterClass="TestNullableObject">
+            INSERT INTO TestNullableObject (To_Id, To_StringValue, To_IntValue, To_LongValue, To_DecimalValue, To_BoolValue, To_DateTimeValue, To_EnumValue)
+            VALUES (#Id#, #StringValue#, #IntValue#, #LongValue#, #DecimalValue#, #BoolValue#, #DateTimeValue#, #EnumValue#)
+        </insert>
+        <update id="Update" parameterClass="TestNullableObject">
+            UPDATE TestNullableObject SET To_Id = #Id#, To_StringValue = #StringValue#, To_IntValue = #IntValue#, To_LongValue = #LongValue#
+            , To_DecimalValue = #DecimalValue#, To_BoolValue = #BoolValue#, To_DateTimeValue = #DateTimeValue#, To_EnumValue = #EnumValue#
+            WHERE To_Id = #Id#
+        </update>
+        <delete id="Delete" parameterClass="hashtable">
+            DELETE FROM TestNullableObject
+            <include refid="SqlWhere" />
+        </delete>
+        <statement id="Truncate">
+            TRUNCATE TABLE TestNullableObject
+        </statement>
+
+        <sql id="SqlFrom">
+            FROM TestNullableObject
+            <include refid="SqlJoin" />
+        </sql>
+        <sql id="SqlWhereBase">
+            <isNotNull prepend="AND" property="Id">
+                To_Id = #Id#
+            </isNotNull>
+            <isNotNull prepend="AND" property="Ids">
+                <iterate open="(" close=")" conjunction="OR" property="Ids">
+                    To_Id = '$Ids[]$'
+                </iterate>
+            </isNotNull>
+        </sql>
+        <sql id="SqlWhere">
+            <dynamic prepend="WHERE">
+                <include refid="SqlWhereBase" />
+                <include refid="SqlWhereCustom" />
+            </dynamic>
+        </sql>
+        <sql id="SqlOrderBy">
+            ORDER BY
+            <isNotNull property="OrderBy">
+                $OrderBy$,
+            </isNotNull>
+            <include refid="SqlOrderByCustom" />
+            To_Id DESC
+        </sql>
+        <select id="SelectCount" parameterClass="hashtable" resultClass="int">
+            SELECT COUNT(*)
+            <include refid="SqlFrom" />
+            <include refid="SqlWhere" />
+        </select>
+        <select id="Select" parameterClass="hashtable" resultMap="TestNullableObjectResult">
+            SELECT *
+            <include refid="SqlFrom"/>
+            <include refid="SqlWhere"/>
+            <include refid="SqlOrderBy"/>
+        </select>
+        <select id="SelectTop" parameterClass="hashtable" resultMap="TestNullableObjectResult">
+            SELECT TOP $TopCount$ *
+            <include refid="SqlFrom"/>
+            <include refid="SqlWhere"/>
+            <include refid="SqlOrderBy"/>
+        </select>
+        <select id="SelectByPage" parameterClass="hashtable" resultMap="TestNullableObjectResult">
+            SELECT TOP $PageSize$ *
+            <include refid="SqlFrom" />
+            WHERE Tdep_Id NOT IN
+            (SELECT TOP $NotInSize$ Tdep_Id
+            <include refid="SqlFrom" />
+            <include refid="SqlWhere" />
+            <include refid="SqlOrderBy" />
+            )
+            <include refid="SqlWhereBase" />
+            <include refid="SqlWhereCustom" />
+            <include refid="SqlOrderBy" />
+        </select>
+
+        <!--Custom Sql Begin-->
+        <sql id="SqlLeftJoin">
+        </sql>
+        <sql id="SqlJoin">
+        </sql>
+        <sql id="SqlOrderByCustom">
+        </sql>
+        <sql id="SqlWhereCustom">
+        </sql>
+        <!--Custom Sql End-->
+
+    </statements>
+
+</sqlMap>
