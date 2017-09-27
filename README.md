@@ -18,6 +18,7 @@ If there are too many sqlMap files, it will be messy to write in the same file, 
 </sqlMaps>
 ```
 5. New project Castle.Facilities.IBatisNet,  instead of old Castle.Facilities.IBatisNetIntegration. Provide Castle integration IBatisNet.DataMapper capabilities, support automatic transaction.
+
 Integration config :
 ```
 <configuration>
