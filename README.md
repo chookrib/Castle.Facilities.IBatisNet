@@ -6,7 +6,7 @@ This project base on IBatisNet.DataMapper-1.6.2, improving and adding some fetur
 3. Add IBatisNet.DataMapper nullable enum support.  
     Origin IBatisNet.DataMapper 1.6.2 not support nullable enum, only through custom TypeHandler to convert. Now can define nullable enum property dircet and not need config extra TypeHandler in resultMap.
 4. Add IBatisNet.DataMapper &lt;sqlMaps&gt; support &lt;include&gt;.  
-    If there are too many sqlMap files, it will be messy to write in the same file, which can be split into different files using the <include> tag for easy management. Such as:
+    If there are too many sqlMap files, it will be messy to write in the same file, which can be split into different files using the <include> tag for easy management. Such as:
 ```
     <sqlMaps>
         <include resource="IBatisNet.SqlMaps.Module1.config"/>
@@ -18,25 +18,25 @@ This project base on IBatisNet.DataMapper-1.6.2, improving and adding some fetur
     Instead of old Castle.Facilities.IBatisNetIntegration. Provide Castle integration IBatisNet.DataMapper capabilities, support automatic transaction.  
     Integration config :
 ```
-<configuration>
-    <facilities>
-        <facility id="ibatis" type="Castle.Facilities.IBatisNet.IBatisNetFacility, Castle.Facilities.IBatisNet">
-            <sqlMap id="sqlMap" config="IBatisNet.config"/>
-        </facility>
-    </facilities>
-</configuration>
-```
+    <configuration>
+        <facilities>
+            <facility id="ibatis" type="Castle.Facilities.IBatisNet.IBatisNetFacility, Castle.Facilities.IBatisNet">
+                <sqlMap id="sqlMap" config="IBatisNet.config"/>
+            </facility>
+        </facilities>
+    </configuration>
+```  
     Automatic transaction config :
 ```
-[Transactional]
-public class TransactionalClass
-{
-    [Transaction]
-    public void virtual TransactionMethod()
+    [Transactional]
+    public class TransactionalClass
     {
-        ...
+        [Transaction]
+        public void virtual TransactionMethod()
+        {
+            ...
+        }
     }
-}
 ```
 Note : If class not implement interface, method must marked as virtual.
 
