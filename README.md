@@ -16,7 +16,7 @@ This project base on IBatisNet.DataMapper-1.6.2, improving and adding some fetur
 ```
 5. New project Castle.Facilities.IBatisNet.  
     Instead of old Castle.Facilities.IBatisNetIntegration. Provide Castle integration IBatisNet.DataMapper capabilities, support automatic transaction.  
-    Integration config :
+> Integration config :
 ```
     <configuration>
         <facilities>
@@ -25,8 +25,10 @@ This project base on IBatisNet.DataMapper-1.6.2, improving and adding some fetur
             </facility>
         </facilities>
     </configuration>
-```  
-    Automatic transaction config :
+```
+
+> Automatic transaction config :
+
 ```
     [Transactional]
     public class TransactionalClass
