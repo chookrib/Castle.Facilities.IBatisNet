@@ -1,6 +1,6 @@
 # Castle.Facilities.IBatisNet
 
-This project base on IBatisNet.DataMapper-1.6.2, adding and improving some functions.
+This project base on IBatisNet.DataMapper-1.6.2, improving and adding some fetures.
 
 ## Improving and Fetures
 
