@@ -137,7 +137,7 @@
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetPath)" "$(ProjectDir)..\_release\" /Y
+start /MIN xcopy "$(TargetDir)$(TargetName).xml" "$(ProjectDir)..\_release\" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>
