@@ -84,6 +84,7 @@
     <Compile Include="TestObject\TestEnum.cs" />
     <Compile Include="TextFixture\LogTest.cs" />
     <Compile Include="TextFixture\TransactionManualTest.cs" />
+    <Compile Include="TextFixture\TransactionWindsorNestedTest.cs" />
     <Compile Include="TextFixture\TransactionWindsorTest.cs" />
     <Compile Include="TextFixture\WindsorTest.cs" />
   </ItemGroup>

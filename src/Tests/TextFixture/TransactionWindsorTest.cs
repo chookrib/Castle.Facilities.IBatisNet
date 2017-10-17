@@ -34,15 +34,15 @@ namespace Tests
         [Test]
         public void TestNestedTransaction()
         {
-            TestInsertFaild(_test.InsertTwiceT_Nested_NN);
-            TestInsertFaild(_test.InsertTwiceT_Nested_NT);
-            TestInsertFaild(_test.InsertTwiceT_Nested_TN);
-            TestInsertFaild(_test.InsertTwiceT_Nested_TT);
+            TestInsertFaild(_test.InsertTwiceT_NN);
+            TestInsertFaild(_test.InsertTwiceT_NT);
+            TestInsertFaild(_test.InsertTwiceT_TN);
+            TestInsertFaild(_test.InsertTwiceT_TT);
 
-            TestInsertSuccess(_test.InsertTwice_Nested_NN);
-            TestInsertSuccess(_test.InsertTwice_Nested_NT);
-            TestInsertSuccess(_test.InsertTwice_Nested_TN);
-            TestInsertSuccess(_test.InsertTwice_Nested_TT);
+            TestInsertSuccess(_test.InsertTwice_NN);
+            TestInsertSuccess(_test.InsertTwice_NT);
+            TestInsertSuccess(_test.InsertTwice_TN);
+            TestInsertSuccess(_test.InsertTwice_TT);
         }
 
         [Test]
@@ -153,52 +153,52 @@ namespace Tests
         //=================================================================
 
         [Transaction]
-        public virtual void InsertTwiceT_Nested_NN(TestObject object1)
+        public virtual void InsertTwiceT_NN(TestObject object1)
         {
             Insert(object1);
             Insert(object1);
         }
 
         [Transaction]
-        public virtual void InsertTwiceT_Nested_TT(TestObject object1)
+        public virtual void InsertTwiceT_TT(TestObject object1)
         {
             InsertT(object1);
             InsertT(object1);
         }
 
         [Transaction]
-        public virtual void InsertTwiceT_Nested_NT(TestObject object1)
+        public virtual void InsertTwiceT_NT(TestObject object1)
         {
             Insert(object1);
             InsertT(object1);
         }
 
         [Transaction]
-        public virtual void InsertTwiceT_Nested_TN(TestObject object1)
+        public virtual void InsertTwiceT_TN(TestObject object1)
         {
             InsertT(object1);
             Insert(object1);
         }
 
-        public virtual void InsertTwice_Nested_NN(TestObject object1)
+        public virtual void InsertTwice_NN(TestObject object1)
         {
             Insert(object1);
             Insert(object1);
         }
 
-        public virtual void InsertTwice_Nested_TT(TestObject object1)
+        public virtual void InsertTwice_TT(TestObject object1)
         {
             InsertT(object1);
             InsertT(object1);
         }
 
-        public virtual void InsertTwice_Nested_NT(TestObject object1)
+        public virtual void InsertTwice_NT(TestObject object1)
         {
             Insert(object1);
             InsertT(object1);
         }
 
-        public virtual void InsertTwice_Nested_TN(TestObject object1)
+        public virtual void InsertTwice_TN(TestObject object1)
         {
             InsertT(object1);
             Insert(object1);

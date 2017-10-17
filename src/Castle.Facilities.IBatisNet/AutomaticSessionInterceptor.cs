@@ -37,13 +37,12 @@ namespace Castle.Facilities.IBatisNet
             String key = ObtainSqlMapKeyFor(info);
             ISqlMapper sqlMap = ObtainSqlMapperFor(key);
 
-            //=================================================================
-            //Use or not use this code, test always pass.
-            //if (sqlMap.IsSessionStarted)
-            //{
-            //    invocation.Proceed();
-            //    return;
-            //}
+            //for nested transaction.
+            if (sqlMap.IsSessionStarted)
+            {
+                invocation.Proceed();
+                return;
+            }
             //=================================================================
 
             //if (_logger.IsDebugEnabled)
