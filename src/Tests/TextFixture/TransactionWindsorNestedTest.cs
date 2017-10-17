@@ -11,11 +11,13 @@ namespace Tests
     [TestFixture]
     public class TransactionWindsorNestedTestEntry
     {
+        private TestObjectDao _testObjectDao;
         private ITransactionWindsorNestedTest1 _test1;
 
         public TransactionWindsorNestedTestEntry()
         {
             WindsorContainer windsorContainer = new WindsorContainer(new XmlInterpreter());
+            _testObjectDao = windsorContainer.Resolve<TestObjectDao>();
             _test1 = windsorContainer.Resolve<ITransactionWindsorNestedTest1>();
         }
 
@@ -24,6 +26,21 @@ namespace Tests
         {
             TestObject object1 = TestObject.NewRandom();
             _test1.Insert(object1);
+            AssertHelper.AreEqual(_testObjectDao.SelectById(object1.Id), object1);
+        }
+
+        [Test]
+        public void Test2()
+        {
+            TestObject object1 = TestObject.NewRandom();
+            try
+            {
+                _test1.Insert2(object1);
+            }
+            catch
+            {
+            }
+            Assert.IsNull(_testObjectDao.SelectById(object1.Id));
         }
     }
 
@@ -31,6 +48,8 @@ namespace Tests
     public interface ITransactionWindsorNestedTest1
     {
         void Insert(TestObject object1);
+
+        void Insert2(TestObject object1);
     }
 
     [Transactional]
@@ -46,6 +65,13 @@ namespace Tests
         [Transaction]
         public virtual void Insert(TestObject object1)
         {
+            _test2.Insert(object1);
+        }
+
+        [Transaction]
+        public virtual void Insert2(TestObject object1)
+        {
+            _test2.Insert(object1);
             _test2.Insert(object1);
         }
     }
