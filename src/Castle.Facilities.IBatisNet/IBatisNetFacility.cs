@@ -116,7 +116,10 @@ namespace Castle.Facilities.IBatisNet
 
             Kernel.Register(Component.For<ISqlMapper>()
                 .Named(id)
-                .ExtendedProperties(new Property(MAPPER_CONFIG_FILE, fileName), new Property(MAPPER_CONFIG_EMBEDDED, isEmbedded), new Property(MAPPER_CONFIG_CONNECTION_STRING, connectionString))
+                .ExtendedProperties(
+                    new Property(MAPPER_CONFIG_FILE, fileName)
+                    , new Property(MAPPER_CONFIG_EMBEDDED, isEmbedded)
+                    , new Property(MAPPER_CONFIG_CONNECTION_STRING, connectionString))
                 .Activator<SqlMapActivator>()
                 .LifeStyle.Singleton
             );
