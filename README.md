@@ -1,5 +1,5 @@
 # Castle.Facilities.IBatisNet
-This project base on IBatisNet.DataMapper-1.6.2, improving and adding some fetures.
+This project base IBatisNet.DataMapper-1.6.2, improving and adding some fetures.
 ## Improving and Fetures
 1. Update IBatisNet target .NET Framework to 4.5, remove .NET Framework 1.0 compile support.
 2. Use nuget update dependent packages to lastest version, include Castle.Core, Castle.Windsor, log4net and NUnit.
